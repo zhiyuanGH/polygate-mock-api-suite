@@ -1,0 +1,10 @@
+{
+ "metadata":{"environment":"competition-sandbox","synthetic":true},"clock_date":"2026-09-01","next_application_id":2,
+ "jobs":[
+  {"job_id":"job-001","title":"Student AI Developer","employer":"Harbour Analytics (Synthetic)","description":"Build evaluated agent workflows for campus services.","employment_type":"internship","work_mode":"hybrid","location":"Hong Kong","skills":["python","apis","testing"],"closing_date":"2026-10-15","status":"open","screening_questions":[{"question_id":"availability","prompt":"State your weekly availability.","required":true},{"question_id":"portfolio","prompt":"Provide a portfolio reference.","required":false}]},
+  {"job_id":"job-002","title":"Data Operations Assistant","employer":"Metro Research Lab (Synthetic)","description":"Support data quality checks and reporting.","employment_type":"part-time","work_mode":"on-site","location":"Hong Kong","skills":["sql","excel","communication"],"closing_date":"2026-09-30","status":"open","screening_questions":[]},
+  {"job_id":"job-003","title":"UX Research Intern","employer":"Civic Studio (Synthetic)","description":"Conduct interviews and synthesize findings.","employment_type":"internship","work_mode":"remote","location":"Hong Kong","skills":["research","writing"],"closing_date":"2026-08-20","status":"closed","screening_questions":[]}
+ ],
+ "saved_jobs":{"student-1001":["job-002"]},
+ "applications":[{"application_id":"job-app-0001","owner_id":"student-1001","job_id":"job-003","resume_ref":"file://synthetic/resume-v1","cover_note":"Synthetic prior application","answers":{},"status":"withdrawn","created_at":"2026-08-01T00:00:00Z","withdrawn_at":"2026-08-02T00:00:00Z"}]
+}

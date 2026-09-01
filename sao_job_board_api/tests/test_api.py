@@ -1,0 +1,26 @@
+import json,threading,unittest
+from http.client import HTTPConnection
+from http.server import ThreadingHTTPServer
+from app import Handler,STORE
+class ApiTest(unittest.TestCase):
+ @classmethod
+ def setUpClass(c): c.s=ThreadingHTTPServer(("127.0.0.1",0),Handler); c.port=c.s.server_address[1]; c.t=threading.Thread(target=c.s.serve_forever,daemon=True); c.t.start()
+ @classmethod
+ def tearDownClass(c): c.s.shutdown(); c.s.server_close(); c.t.join(timeout=2)
+ def setUp(s): STORE.reset()
+ def req(s,m,p,b=None):
+  c=HTTPConnection("127.0.0.1",s.port,timeout=5); c.request(m,p,json.dumps(b).encode() if b is not None else None,{"Authorization":"Bearer polygate-student-demo","Content-Type":"application/json"}); r=c.getresponse(); x=json.loads(r.read()); c.close(); return r.status,x
+ def test_search_and_save(s):
+  st,p=s.req("GET","/v1/jobs?skills=python,apis"); s.assertEqual(p["count"],1); st,p=s.req("POST","/v1/saved-jobs/job-001",{}); s.assertTrue(p["saved"]); st,p=s.req("DELETE","/v1/saved-jobs/job-001"); s.assertFalse(p["saved"])
+ def test_application_workflow(s):
+  b={"job_id":"job-001","resume_ref":"file://synthetic/resume-v2","cover_note":"I can help","answers":{}}
+  st,p=s.req("POST","/v1/job-applications",b); aid=p["application"]["application_id"]
+  st,p=s.req("POST",f"/v1/job-applications/{aid}/submit",{}); s.assertEqual(st,400); s.assertEqual(p["error"]["code"],"missing_answers")
+  st,p=s.req("PATCH",f"/v1/job-applications/{aid}",{"answers":{"availability":"Two days per week"}}); s.assertEqual(st,200)
+  st,p=s.req("POST",f"/v1/job-applications/{aid}/submit",{}); s.assertEqual(p["application"]["status"],"submitted")
+  st,p=s.req("DELETE",f"/v1/job-applications/{aid}"); s.assertEqual(p["application"]["status"],"withdrawn")
+ def test_closed_job_rejected(s):
+  st,p=s.req("POST","/v1/job-applications",{"job_id":"job-003","resume_ref":"x","cover_note":"x"}); s.assertEqual(st,409)
+ def test_duplicate_application_rejected(s):
+  b={"job_id":"job-002","resume_ref":"x","cover_note":"x"}; s.req("POST","/v1/job-applications",b); st,p=s.req("POST","/v1/job-applications",b); s.assertEqual(st,409)
+if __name__=="__main__": unittest.main()

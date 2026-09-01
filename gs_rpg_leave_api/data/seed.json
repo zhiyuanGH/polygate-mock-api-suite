@@ -1,0 +1,14 @@
+{
+  "metadata":{"environment":"competition-sandbox","synthetic":true},
+  "next_application_id":3,
+  "leave_types":[
+    {"leave_type_id":"annual","name":"Annual Leave","max_consecutive_days":20,"document_required_after_days":99},
+    {"leave_type_id":"sick","name":"Sick Leave","max_consecutive_days":30,"document_required_after_days":2},
+    {"leave_type_id":"conference","name":"Conference Leave","max_consecutive_days":10,"document_required_after_days":1}
+  ],
+  "entitlements":{"student-1001":{"annual":20,"sick":14,"conference":10}},
+  "applications":[
+    {"application_id":"leave-app-0001","owner_id":"student-1001","leave_type_id":"annual","start_date":"2026-07-06","end_date":"2026-07-10","working_days":5,"reason":"Synthetic personal leave","contact_during_leave":"student@example.invalid","document_refs":[],"status":"approved","created_at":"2026-06-01T00:00:00Z","submitted_at":"2026-06-01T01:00:00Z"},
+    {"application_id":"leave-app-0002","owner_id":"student-9000","leave_type_id":"annual","start_date":"2026-09-01","end_date":"2026-09-02","working_days":2,"reason":"Other synthetic user","contact_during_leave":"other@example.invalid","document_refs":[],"status":"submitted","created_at":"2026-08-01T00:00:00Z"}
+  ]
+}

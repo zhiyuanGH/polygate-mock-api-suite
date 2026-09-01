@@ -1,0 +1,12 @@
+{
+  "metadata": {"environment": "competition-sandbox", "synthetic": true},
+  "next_application_id": 2,
+  "periods": [{"period_id": "2026-27", "name": "2026/27 Academic Year", "status": "open", "opens_at": "2026-08-15T00:00:00Z", "closes_at": "2026-09-30T23:59:59Z"}],
+  "lockers": [
+    {"locker_id": "VA-L1-001", "building": "VA", "floor": "1", "size": "medium", "accessible": true, "status": "available"},
+    {"locker_id": "VA-L1-002", "building": "VA", "floor": "1", "size": "small", "accessible": false, "status": "available"},
+    {"locker_id": "BC-L2-014", "building": "BC", "floor": "2", "size": "medium", "accessible": false, "status": "available"},
+    {"locker_id": "BC-L2-015", "building": "BC", "floor": "2", "size": "large", "accessible": true, "status": "assigned", "assigned_to": "student-9000"}
+  ],
+  "applications": [{"application_id": "locker-app-0001", "owner_id": "student-1001", "period_id": "2025-26", "size_preference": "small", "building_preferences": ["VA"], "accessibility_required": false, "status": "cancelled", "created_at": "2025-08-20T00:00:00Z", "cancelled_at": "2025-08-21T00:00:00Z", "offered_locker_id": null}]
+}

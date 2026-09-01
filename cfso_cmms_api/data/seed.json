@@ -1,0 +1,20 @@
+{
+ "metadata":{"environment":"competition-sandbox","synthetic":true},"next_request_id":3,"next_comment_id":2,
+ "categories":[
+  {"category_id":"electrical","name":"Electrical","default_priority":"high","target_response_hours":2},
+  {"category_id":"air-conditioning","name":"Air Conditioning","default_priority":"normal","target_response_hours":8},
+  {"category_id":"furniture","name":"Furniture","default_priority":"low","target_response_hours":24},
+  {"category_id":"plumbing","name":"Plumbing","default_priority":"high","target_response_hours":2},
+  {"category_id":"cleaning","name":"Cleaning","default_priority":"normal","target_response_hours":4}
+ ],
+ "assets":[
+  {"asset_id":"asset-AC-BC302","name":"Air conditioner BC302","asset_type":"air-conditioning","building":"BC","floor":"3","location":"BC302","service_status":"active"},
+  {"asset_id":"asset-LIGHT-Z205","name":"Ceiling light bank Z205","asset_type":"electrical","building":"Z","floor":"2","location":"Z205","service_status":"active"},
+  {"asset_id":"asset-DESK-PQ704","name":"Teaching desk PQ704","asset_type":"furniture","building":"PQ","floor":"7","location":"PQ704","service_status":"active"}
+ ],
+ "service_requests":[
+  {"request_id":"fm-0001","owner_id":"student-1001","category_id":"furniture","asset_id":"asset-DESK-PQ704","location":"PQ704","title":"Loose drawer handle","description":"Synthetic example issue","urgency":"low","access_permission":true,"preferred_contact":"student@example.invalid","attachment_refs":[],"status":"triaged","created_at":"2026-08-20T02:00:00Z","last_updated_at":"2026-08-20T03:00:00Z"},
+  {"request_id":"fm-0002","owner_id":"student-9000","category_id":"cleaning","asset_id":null,"location":"VA109","title":"Cleaning request","description":"Other synthetic user","urgency":"normal","access_permission":true,"preferred_contact":"other@example.invalid","attachment_refs":[],"status":"submitted","created_at":"2026-08-21T02:00:00Z","last_updated_at":"2026-08-21T02:00:00Z"}
+ ],
+ "comments":[{"comment_id":"comment-0001","request_id":"fm-0001","author_id":"organizer-1001","message":"Synthetic triage completed.","attachment_refs":[],"created_at":"2026-08-20T03:00:00Z"}]
+}

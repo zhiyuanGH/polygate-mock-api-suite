@@ -1,0 +1,16 @@
+services:
+  room-booking:
+    build: ./cdo_room_booking_api
+    ports: ["8101:8101"]
+  student-locker:
+    build: ./cfso_student_locker_api
+    ports: ["8102:8102"]
+  rpg-leave:
+    build: ./gs_rpg_leave_api
+    ports: ["8103:8103"]
+  job-board:
+    build: ./sao_job_board_api
+    ports: ["8104:8104"]
+  cmms:
+    build: ./cfso_cmms_api
+    ports: ["8105:8105"]
