@@ -1,16 +1,21 @@
 services:
   room-booking:
+    image: ghcr.io/zhiyuangh/polygate-cdo-room-booking:latest
     build: ./cdo_room_booking_api
     ports: ["8101:8101"]
   student-locker:
+    image: ghcr.io/zhiyuangh/polygate-cfso-student-locker:latest
     build: ./cfso_student_locker_api
     ports: ["8102:8102"]
   rpg-leave:
+    image: ghcr.io/zhiyuangh/polygate-gs-rpg-leave:latest
     build: ./gs_rpg_leave_api
     ports: ["8103:8103"]
   job-board:
+    image: ghcr.io/zhiyuangh/polygate-sao-job-board:latest
     build: ./sao_job_board_api
     ports: ["8104:8104"]
   cmms:
+    image: ghcr.io/zhiyuangh/polygate-cfso-cmms:latest
     build: ./cfso_cmms_api
     ports: ["8105:8105"]

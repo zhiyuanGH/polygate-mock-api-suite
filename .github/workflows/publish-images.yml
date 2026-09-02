@@ -1,0 +1,80 @@
+name: Publish container images
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+    paths:
+      - ".github/workflows/publish-images.yml"
+      - "**/Dockerfile"
+      - "**/*.py"
+      - "**/data/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    name: Publish ${{ matrix.image }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - image: polygate-cdo-room-booking
+            context: cdo_room_booking_api
+          - image: polygate-cfso-student-locker
+            context: cfso_student_locker_api
+          - image: polygate-gs-rpg-leave
+            context: gs_rpg_leave_api
+          - image: polygate-sao-job-board
+            context: sao_job_board_api
+          - image: polygate-cfso-cmms
+            context: cfso_cmms_api
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Enable multi-platform builds
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate image metadata
+        id: metadata
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/zhiyuangh/${{ matrix.image }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=1.0.0,enable={{is_default_branch}}
+            type=sha,prefix=sha-
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+          labels: |
+            org.opencontainers.image.source=https://github.com/zhiyuanGH/polygate-mock-api-suite
+            org.opencontainers.image.description=Independent synthetic API for the PolyGate Agent Challenge
+
+      - name: Build and publish image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./${{ matrix.context }}
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.metadata.outputs.tags }}
+          labels: ${{ steps.metadata.outputs.labels }}
+          cache-from: type=gha,scope=${{ matrix.image }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.image }}
+          provenance: true
+          sbom: true

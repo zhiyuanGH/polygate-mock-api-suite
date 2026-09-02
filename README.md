@@ -33,6 +33,29 @@ docker compose up --build
 
 Running all five together is optional. Every directory can be built and deployed by itself using the commands in its README.
 
+## Published images
+
+GitHub Actions publishes multi-platform images for `linux/amd64` and `linux/arm64`:
+
+| Service | GitHub Container Registry image |
+| --- | --- |
+| Room Booking | `ghcr.io/zhiyuangh/polygate-cdo-room-booking:latest` |
+| Student Locker | `ghcr.io/zhiyuangh/polygate-cfso-student-locker:latest` |
+| RPg Leave | `ghcr.io/zhiyuangh/polygate-gs-rpg-leave:latest` |
+| Job Board | `ghcr.io/zhiyuangh/polygate-sao-job-board:latest` |
+| CMMS | `ghcr.io/zhiyuangh/polygate-cfso-cmms:latest` |
+
+Packages inherit private access when first published. Authenticate with a GitHub token that has `read:packages`, then pull one image or all five:
+
+```bash
+echo "$CR_PAT" | docker login ghcr.io -u USERNAME --password-stdin
+docker pull ghcr.io/zhiyuangh/polygate-cdo-room-booking:latest
+docker compose pull
+docker compose up -d
+```
+
+The publish workflow also creates immutable `sha-<commit>` tags and version `1.0.0` tags. A Git tag such as `v1.1.0` creates matching semantic-version image tags.
+
 ## Competition boundary
 
 All data and identities are synthetic. The fixed demo token is only for local development. Before student participants receive access, deploy each API inside the isolated competition network, terminate TLS at the gateway, replace demo authentication with competition identities, apply per-service ingress and rate limits, export audit logs, and verify that no production route, credential, or personal data exists.
