@@ -2,9 +2,16 @@
 
 Five sandbox APIs selected from the PolyU system stocktake for the PolyGate Agent Challenge. They live in one repository for organizer convenience, but each service is an independent deployment unit: it has its own process, port, source code, synthetic data, tests, Dockerfile, authentication boundary, and OpenAPI 3.1 document. No service imports or calls another service.
 
-## Student organiser recruitment
+## Repository scope
 
-The [recruitment poster](Poster/README.md) includes the latest English preview, editable A3 PowerPoint and illustration assets. It recruits students from all PolyU programmes to help organise the AI agent design competition. The application QR code and enquiry/application email are currently placeholders and must be replaced before distribution.
+This repository maintains the five mock APIs, synthetic data, API contracts, tests, containers, and deployment documentation.
+
+Proposals, posters, presentations, and other programme materials are maintained in [PolyGatePoster](https://github.com/zhiyuanGH/PolyGatePoster):
+
+- [Phase 1: student organiser recruitment and preparation](https://github.com/zhiyuanGH/PolyGatePoster/tree/main/phase-1)
+- [Phase 2: student Agent Challenge](https://github.com/zhiyuanGH/PolyGatePoster/tree/main/phase-2)
+
+The former `Poster/` directory has moved to [Phase 1 recruitment material](https://github.com/zhiyuanGH/PolyGatePoster/tree/main/phase-1/poster). That materials repository is private and requires collaborator access. Update programme material there and API implementations here.
 
 ## Systems
 
