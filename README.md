@@ -2,6 +2,12 @@
 
 Five sandbox APIs selected from the PolyU system stocktake for the PolyGate Agent Challenge. They live in one repository for organizer convenience, but each service is an independent deployment unit: it has its own process, port, source code, synthetic data, tests, Dockerfile, authentication boundary, and OpenAPI 3.1 document. No service imports or calls another service.
 
+## Student organiser recruitment
+
+The [recruitment poster](Poster/README.md) includes the latest English preview, editable A3 PowerPoint and illustration assets. It recruits students from all PolyU programmes to help organise the AI agent design competition. The application QR code and enquiry/application email are currently placeholders and must be replaced before distribution.
+
+## Systems
+
 | System | Directory | Port | Main agent workflows |
 | --- | --- | ---: | --- |
 | CDO Room Booking System (ITS Ref. 12) | `cdo_room_booking_api/` | 8101 | Search rooms, check availability, create/update/list/cancel bookings |
